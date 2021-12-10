@@ -1,0 +1,62 @@
+@extends('layout')
+
+@section('content')
+    <div class="row">
+        <div class="col-md-12">
+            <h2>加新網站</h2>
+
+            @if (session('error')!='')
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            @endif
+
+            @if (count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            <form method="post" action="{{ route('websites.store') }}" enctype="multipart/form-data">
+                {{ csrf_filed() }}
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <strong>標題：</strong>
+                            <input type="text" name="title" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <strong>Url：</strong>
+                            <input type="text" name="url" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6">
+                        <div class="form-group">
+                            <strong>Logo：</strong>
+                            <input type="file" name="logo" class="form-control"/>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+                    <button type="submit" class="btn btn-primary" id="button-save">建立</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+@endsection
